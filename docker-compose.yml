@@ -1,0 +1,26 @@
+version: '3'
+services:
+    app:
+        build: .
+        environment:
+            - COMPOSER_HOME=app/composer
+            - COMPOSER_CACHE_DIR=app/composer/cache
+        volumes:
+            - .:/app
+        ports:
+            - "9000:9000"
+        depends_on:
+            - mongo
+        env_file:
+            - .env
+
+    mongo:
+        image: mongo
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+        volumes:
+            - mongo-data:/data/db
+
+volumes:
+    mongo-data:

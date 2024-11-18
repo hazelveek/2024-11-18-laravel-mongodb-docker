@@ -1,0 +1,35 @@
+# Use an official PHP 8.2 image as the base
+FROM php:8.2-fpm
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    unzip \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the composer.lock and composer.json files
+COPY composer.lock composer.json ./
+
+# Install the dependencies
+RUN composer install --no-dev --prefer-dist
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port
+EXPOSE 8000
+
+# Run the command to start the PHP-FPM server
+CMD ["php-fpm"]

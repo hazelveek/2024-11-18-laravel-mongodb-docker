@@ -5,22 +5,14 @@ services:
         environment:
             - COMPOSER_HOME=app/composer
             - COMPOSER_CACHE_DIR=app/composer/cache
+            - DB_CONNECTION=mongodb
+            - DB_HOST=${MONGODB_ATLAS_HOST}
+            - DB_PORT=27017
+            - DB_DATABASE=${MONGODB_ATLAS_DATABASE}
+            - DB_USERNAME=${MONGODB_ATLAS_USERNAME}
+            - DB_PASSWORD=${MONGODB_ATLAS_PASSWORD}
         volumes:
-            - .:/app
+            - ./:/app
         ports:
-            - "9000:9000"
-        depends_on:
-            - mongo
-        env_file:
-            - .env
-
-    mongo:
-        image: mongo
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
-            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-        volumes:
-            - mongo-data:/data/db
-
-volumes:
-    mongo-data:
+            - "8000:8000"
+        command: php artisan serve --host=0.0.0.0 --port=8000

@@ -2,15 +2,6 @@ version: '3'
 services:
     app:
         build: .
-        environment:
-            - COMPOSER_HOME=app/composer
-            - COMPOSER_CACHE_DIR=app/composer/cache
-            - DB_CONNECTION=mongodb
-            - DB_HOST=${MONGODB_ATLAS_HOST}
-            - DB_PORT=27017
-            - DB_DATABASE=${MONGODB_ATLAS_DATABASE}
-            - DB_USERNAME=${MONGODB_ATLAS_USERNAME}
-            - DB_PASSWORD=${MONGODB_ATLAS_PASSWORD}
         volumes:
             - ./:/app
         ports:

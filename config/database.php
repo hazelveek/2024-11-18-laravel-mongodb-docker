@@ -23,7 +23,7 @@ return [
     | Database Connections
     |--------------------------------------------------------------------------
     |
-    | Below are all of the database connections defined for your application.
+    | Below are all the database connections defined for your application.
     | An example configuration is provided for each database system which
     | is supported by Laravel. You're free to add / remove connections.
     |
@@ -31,12 +31,11 @@ return [
 
     'connections' => [
         'mongodb' => [
-            'driver' => 'mongodb',
-            'host' => env('MONGO_HOST', 'mongo'),
-            'port' => env('MONGO_PORT', 27017),
-            'database' => env('MONGO_DB', 'your_mongo_db'),
-            'username' => env('MONGO_USERNAME', 'your_mongo_username'),
-            'password' => env('MONGO_PASSWORD', 'your_mongo_password'),
+            'driver'   => 'mongodb',
+            'host'     => env('MONGODB_ATLAS_URI'),
+            'database' => '',
+            'username' => '',
+            'password' => '',
         ],
 
         'sqlite' => [
@@ -155,7 +154,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

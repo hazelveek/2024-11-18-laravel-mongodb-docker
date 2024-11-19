@@ -4,7 +4,7 @@ FROM php:8.2-fpm
 # Set the working directory to /app
 WORKDIR /app
 
-# Install Composer from the official Composer image
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install dependencies required for Laravel

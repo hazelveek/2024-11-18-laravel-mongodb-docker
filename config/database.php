@@ -31,11 +31,10 @@ return [
 
     'connections' => [
         'mongodb' => [
-            'driver'   => 'mongodb',
-            'host'     => env('MONGODB_ATLAS_URI'),
-            'database' => '',
-            'username' => '',
-            'password' => '',
+            'driver' => 'mongodb',
+            'dsn' => env('MONGODB_ATLAS_URI'),
+//            'database' => env('MONGODB_ATLAS_DATABASE', ''),
+//            'port' => env('MONGODB_ATLAS_PORT', 27017),
         ],
 
         'sqlite' => [
